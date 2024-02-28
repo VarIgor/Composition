@@ -1,12 +1,10 @@
 package edu.example.composition.presentation
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.OnClickListener
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import edu.example.composition.R
 import edu.example.composition.databinding.FragmentChooseLevelBinding
 import edu.example.composition.domain.entity.Level
@@ -19,7 +17,7 @@ class ChooseLevelFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentChooseLevelBinding.inflate(inflater, container, false)
         return binding.root
     }

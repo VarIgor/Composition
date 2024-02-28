@@ -28,7 +28,7 @@ class GameFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentGameBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -59,9 +59,9 @@ class GameFragment : Fragment() {
 
     private fun parseArgs() {
         level = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            requireArguments().getSerializable(KEY_LEVEL, Level::class.java)!!
+            requireArguments().getParcelable(KEY_LEVEL, Level::class.java)!!
         } else {
-            requireArguments().getSerializable(KEY_LEVEL) as Level
+            @Suppress("DEPRECATION")requireArguments().getParcelable<Level>(KEY_LEVEL) as Level
         }
     }
 
@@ -82,7 +82,7 @@ class GameFragment : Fragment() {
 
             return GameFragment().apply {
                 arguments = Bundle().apply {
-                    putSerializable(KEY_LEVEL, level)
+                    putParcelable(KEY_LEVEL, level)
                 }
             }
         }
