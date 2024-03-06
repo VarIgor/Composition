@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import edu.example.composition.R
 import edu.example.composition.databinding.FragmentGameFinishedBinding
 import edu.example.composition.domain.entity.GameResult
 
@@ -34,17 +35,54 @@ class GameFinishedFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        insertValuesGameResult()
+        setupClickListeners()
+    }
+
+    private fun setupClickListeners() {
         binding.buttonRetry.setOnClickListener {
             retryGame()
         }
         onBackPressed()
     }
 
+    private fun insertValuesGameResult() {
+        with(binding) {
+            emojiResult.setImageResource(getSmileResId())
+
+            tvRequiredAnswers.text = String.format(
+                getString(R.string.required_answers),
+                gameResult.gameSettings.minCountOfRightAnswers.toString()
+            )
+            tvScoreAnswers.text = String.format(
+                getString(R.string.score_answers),
+                gameResult.countOfRightAnswer.toString()
+            )
+            tvRequiredPercentage.text = String.format(
+                getString(R.string.required_percentage),
+                gameResult.gameSettings.minPercentOfRightAnswers.toString()
+            )
+            tvScorePercentage.text = String.format(
+                getString(R.string.score_percentage),
+                gameResult.percentOfRightAnswers
+            )
+        }
+    }
+
+
     private fun parseArgs() {
         gameResult = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             requireArguments().getParcelable(KEY_GAME_RESULT, GameResult::class.java)!!
         } else {
-            @Suppress("DEPRECATION")requireArguments().getParcelable<GameResult>(KEY_GAME_RESULT) as GameResult
+            @Suppress("DEPRECATION") requireArguments().getParcelable<GameResult>(KEY_GAME_RESULT) as GameResult
+        }
+    }
+
+    private fun getSmileResId(): Int {
+        return if (gameResult.winner) {
+            R.drawable.ic_smile
+        } else {
+            R.drawable.ic_sad
         }
     }
 
