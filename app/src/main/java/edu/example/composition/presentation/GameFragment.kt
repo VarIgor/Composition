@@ -20,13 +20,17 @@ class GameFragment : Fragment() {
     private lateinit var level: Level
 
     private var _binding: FragmentGameBinding? = null
+
+    private val viewModelFactory by lazy {
+        GameViewModelFactory(level, requireActivity().application)
+    }
     private val binding: FragmentGameBinding
         get() = _binding ?: throw RuntimeException("FragmentGameBinding == null")
 
     private val viewModel: GameViewModel by lazy {
         ViewModelProvider(
             this,
-            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
+            viewModelFactory
         )[GameViewModel::class.java]
     }
 
@@ -45,7 +49,6 @@ class GameFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         parseArgs()
-
     }
 
     override fun onCreateView(
@@ -60,7 +63,6 @@ class GameFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         observeViewModel()
         setOnClickListenersToOptions()
-        viewModel.startGame(level)
 
     }
 
