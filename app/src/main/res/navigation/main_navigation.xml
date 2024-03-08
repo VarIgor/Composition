@@ -30,16 +30,21 @@
         tools:layout="@layout/fragment_game" >
         <action
             android:id="@+id/action_gameFragment_to_gameFinishedFragment"
-            app:destination="@id/gameFinishedFragment" />
+            app:destination="@id/gameFinishedFragment"
+            app:launchSingleTop="false"
+            app:popUpTo="@id/gameFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="level"
+            app:argType="edu.example.composition.domain.entity.Level" />
     </fragment>
     <fragment
         android:id="@+id/gameFinishedFragment"
         android:name="edu.example.composition.presentation.GameFinishedFragment"
         android:label="fragment_game_finished"
         tools:layout="@layout/fragment_game_finished" >
-        <action
-            android:id="@+id/action_gameFinishedFragment_to_chooseLevelFragment2"
-            app:destination="@id/chooseLevelFragment"
-            app:popUpTo="@id/chooseLevelFragment" />
+        <argument
+            android:name="gameResult"
+            app:argType="edu.example.composition.domain.entity.GameResult" />
     </fragment>
 </navigation>

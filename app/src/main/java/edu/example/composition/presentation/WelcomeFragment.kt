@@ -1,11 +1,11 @@
 package edu.example.composition.presentation
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import edu.example.composition.R
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import edu.example.composition.databinding.FragmentWelcomeBinding
 
 class WelcomeFragment : Fragment() {
@@ -30,10 +30,12 @@ class WelcomeFragment : Fragment() {
         }
     }
     private fun launchChooseLevelFragment() {
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.main_container, ChooseLevelFragment.newInstance())
-            .addToBackStack(null)
-            .commit()
+        val action = WelcomeFragmentDirections.actionWelcomeFragmentToChooseLevelFragment()
+        findNavController().navigate(action)
+//        requireActivity().supportFragmentManager.beginTransaction()
+//            .replace(R.id.main_container, ChooseLevelFragment.newInstance())
+//            .addToBackStack(null)
+//            .commit()
     }
 
     override fun onDestroyView() {
