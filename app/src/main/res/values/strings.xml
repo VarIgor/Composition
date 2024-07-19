@@ -9,6 +9,7 @@
         из нижних знак вопроса, а в другом число 4. Значит на месте вопросительного знака должно
         быть число 3, потому что 3 + 4 = 7
     </string>
+    <string name="image_description">image brain</string>
     <string name="button_understand">Понятно</string>
     <string name="welcome_logo">Welcome logo</string>
     <string name="choose_level_title">Выберите уровень:</string>

@@ -22,7 +22,7 @@
             android:src="@drawable/ic_brain"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:contentDescription=""
+            android:contentDescription="@string/image_description"
             app:layout_constraintTop_toTopOf="parent"
             />
 
