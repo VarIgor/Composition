@@ -19,11 +19,6 @@ class GameFinishedFragment : Fragment() {
 
     private val gameResult by lazy { args.gameResult }
 
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        parseArgs()
-//    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,7 +37,6 @@ class GameFinishedFragment : Fragment() {
         binding.buttonRetry.setOnClickListener {
             retryGame()
         }
-//        onBackPressed()
     }
 
     private fun insertValuesGameResult() {
@@ -68,15 +62,6 @@ class GameFinishedFragment : Fragment() {
         }
     }
 
-
-//    private fun parseArgs() {
-//        gameResult = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-//            requireArguments().getParcelable(KEY_GAME_RESULT, GameResult::class.java)!!
-//        } else {
-//            @Suppress("DEPRECATION") requireArguments().getParcelable<GameResult>(KEY_GAME_RESULT) as GameResult
-//        }
-//    }
-
     private fun getSmileResId(): Int {
         return if (gameResult.winner) {
             R.drawable.ic_smile
@@ -85,38 +70,12 @@ class GameFinishedFragment : Fragment() {
         }
     }
 
-//    private fun onBackPressed() {
-//        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,
-//            object : OnBackPressedCallback(true) {
-//                override fun handleOnBackPressed() {
-//                    retryGame()
-//                }
-//            })
-//    }
-
     private fun retryGame() {
         findNavController().popBackStack()
-//        requireActivity().supportFragmentManager
-//            .popBackStack(
-//                GameFragment.FRAGMENT_NAME,
-//                FragmentManager.POP_BACK_STACK_INCLUSIVE
-//            )
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    companion object {
-//        private const val KEY_GAME_RESULT = "game_result"
-//        fun newInstance(gameResult: GameResult): GameFinishedFragment {
-//            return GameFinishedFragment().apply {
-//                arguments = Bundle().apply {
-//                    putParcelable(KEY_GAME_RESULT, gameResult)
-//                }
-//            }
-//        }
     }
 }

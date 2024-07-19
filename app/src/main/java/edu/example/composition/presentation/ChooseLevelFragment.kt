@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import edu.example.composition.databinding.FragmentChooseLevelBinding
+
+
 import edu.example.composition.domain.entity.Level
 
 class ChooseLevelFragment : Fragment() {
@@ -41,17 +43,5 @@ class ChooseLevelFragment : Fragment() {
        val action =
            ChooseLevelFragmentDirections.actionChooseLevelFragmentToGameFragment(level)
         findNavController().navigate(action)
-//        requireActivity().supportFragmentManager.beginTransaction()
-//            .replace(R.id.main_container, GameFragment.newInstance(level))
-//            .addToBackStack(GameFragment.FRAGMENT_NAME)
-//            .commit()
     }
-
-    companion object {
-
-//        fun newInstance(): ChooseLevelFragment {
-//            return ChooseLevelFragment()
-//        }
-    }
-
 }

@@ -1,8 +1,8 @@
 package edu.example.composition.presentation
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.os.CountDownTimer
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,8 +18,7 @@ import edu.example.composition.domain.usecases.GetGameSettingsUseCase
 class GameViewModel(
     private val application: Application,
     private var level: Level
-): ViewModel() {
-
+) : ViewModel() {
 
     private val gameRepository = GameRepositoryImpl
     private val generateQuestionUseCase = GenerateQuestionsUseCase(gameRepository)
@@ -102,7 +101,6 @@ class GameViewModel(
             override fun onTick(millisUntilFinished: Long) {
                 _formattedTime.value = formatTime(millisUntilFinished)
             }
-
             override fun onFinish() {
                 finishGame()
             }
@@ -110,6 +108,7 @@ class GameViewModel(
         timer?.start()
     }
 
+    @SuppressLint("DefaultLocale")
     private fun formatTime(milliseconds: Long): String {
         val seconds = milliseconds / MILLIS_IN_SECONDS
         val minutes = seconds / SECONDS_IN_MINUTES
@@ -143,6 +142,7 @@ class GameViewModel(
         return ((countOfRightAnswers / countOfQuestions.toDouble()) * IN_PERCENT).toInt()
     }
 
+    @SuppressLint("StringFormatMatches")
     private fun updateProgress() {
         val percent = calculatePercentRightAnswer()
         _percentOfRightAnswer.value = percent
@@ -159,6 +159,5 @@ class GameViewModel(
         private const val MILLIS_IN_SECONDS = 1000L
         private const val SECONDS_IN_MINUTES = 60
         private const val IN_PERCENT = 100
-
     }
 }
