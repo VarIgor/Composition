@@ -1,4 +1,4 @@
-### composition
+### Composition
 ___
 This application was created as part of a training course. The goal is to develop skills and try out new technologies, in particular: the project structure adheres to 
 the principles of clean architecture. The application is built on fragments and has one activity. 
